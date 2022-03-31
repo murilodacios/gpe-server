@@ -6,7 +6,9 @@
   "scripts": {
     "build": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files",
     "dev:server": "ts-node-dev --transpile-only --ignore-watch node_modules --poll --respawn src/shared/http/server.ts",
-    "test": "jest",
+    "test": "jest"
+  },
+  "prisma": {
     "seed": "ts-node prisma/seed.ts"
   },
   "dependencies": {
