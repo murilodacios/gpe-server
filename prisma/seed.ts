@@ -1,4 +1,5 @@
-import { prisma } from './../src/db/prismaClient'
+import { PrismaClient } from '@prisma/client'
+const prisma = new PrismaClient()
 import { admin } from './seeds/admin'
 
 async function main() {
