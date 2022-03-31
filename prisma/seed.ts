@@ -1,10 +1,9 @@
-import { User } from "@prisma/client";
 import { prisma } from './../src/db/prismaClient'
 import { admin } from './seeds/admin'
 
 async function main() {
 
-    await prisma.user.createMany({
+    await prisma.user.create({
         data: admin,
     });
 }
