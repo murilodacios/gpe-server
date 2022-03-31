@@ -3,7 +3,7 @@ version: "3.9"
 services: 
     database: 
         image: postgres
-        container_name: 
+        container_name: dashtwo
         restart: always
         ports: 
             - 5432:5432
