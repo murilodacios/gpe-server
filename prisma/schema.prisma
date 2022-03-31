@@ -1,0 +1,95 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Job {
+  id          String @id @unique @default(uuid())
+  name        String @unique
+  description String
+  user        User[]
+
+  @@map("jobs")
+}
+
+model Task {
+  id          String   @id @unique @default(uuid())
+  description String
+  completed   Boolean
+  created_at  DateTime
+
+  @@map("tasks")
+}
+
+model User {
+
+  id       String @id @unique @default(uuid())
+  name     String
+  email    String @unique
+  password String
+
+  level       Int
+  permissions String
+
+  job    Job    @relation(fields: [job_id], references: [id])
+  job_id String
+
+  demands UserOnDemand[]
+  seen_demands DemandSeenByUser[]
+
+  Demand Demand[]
+
+  @@map("users")
+}
+
+model Demand {
+  id               String         @id @unique @default(uuid())
+  numero           String
+  tipo             String
+  orgao_origem     String
+  remetente        String
+  assunto          String
+  setores          String
+  data_emissao     DateTime
+  data_recebimento DateTime
+  prazo_resposta   DateTime 
+  status           String?
+  data_resposta    DateTime?
+  obs_resposta     String?
+  anotacao         String?
+  processos        String
+  user             User           @relation(fields: [userId], references: [id])
+  userId           String
+  users           UserOnDemand[]
+  seen_users      DemandSeenByUser[]
+
+  @@map("demands")
+}
+
+model DemandSeenByUser {
+  id       String @id @unique @default(uuid())
+  demand   Demand @relation(fields: [demandId], references: [id])
+  demandId String
+  user     User   @relation(fields: [userId], references: [id])
+  userId   String
+  seen_date DateTime
+
+  @@map("demandseenbyuser")
+}
+
+model UserOnDemand {
+  id       String @id @unique @default(uuid())
+  demand   Demand @relation(fields: [demandId], references: [id])
+  demandId String
+  user     User   @relation(fields: [userId], references: [id])
+  userId   String
+
+  @@map("usersondemand")
+}
