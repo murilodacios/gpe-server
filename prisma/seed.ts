@@ -10,17 +10,21 @@ async function main() {
         }
     })
 
-    await prisma.user.create({
-        data: {
-            name: "Murilo Dácio",
-            email: "murilodacio@gmail.com",
-            //@ts-ignore
-            password: await hash("", 8),
-            level: 1,
-            permissions: "god",
-            job_id: job.id
-        },
-    });
+    if (job) {
+        await prisma.user.create({
+            data: {
+                name: "Murilo Dácio",
+                email: "murilodacio@gmail.com",
+                //@ts-ignore
+                password: await hash("", 8),
+                level: 1,
+                permissions: "god",
+                job_id: job.id
+            },
+        });
+    }
+
+
 }
 
 main()
