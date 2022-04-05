@@ -42,5 +42,5 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
-          script: "cd /var/www/ndojs/gpe-server && yarn && pm2 restart gpe-server"
+          script: cd /var/www/ndojs/gpe-server && yarn && pm2 restart gpe-server
 						
