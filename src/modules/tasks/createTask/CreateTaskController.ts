@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { CreateTaskUseCase } from "./createTaskUseCase";
+import { CreateTaskUseCase } from "./CreateTaskUseCase";
 
 class CreateTaskController {
 
