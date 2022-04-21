@@ -10,6 +10,48 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+
+model Payment {
+  id String @id @unique @default(uuid())
+  empresa String
+  processo String
+  assunto String
+  fonte String
+  //Mes de referencia de pagamento
+  referencia String
+  valor Decimal @db.Decimal(19, 2)
+  pago DateTime
+
+  //Mes atual
+  month Month @relation(fields: [month_id], references: [id])
+  month_id String
+
+  //Secretaria
+  secretary Secretary @relation(fields: [secretary_id], references: [id])
+  secretary_id String
+
+  @@map("payments")
+}
+
+model Secretary {
+  id String @id @unique @default(uuid())
+  name String
+  payments Payment[]
+
+  @@map("secretaries")
+}
+
+model Month {
+  id String @id @unique @default(uuid())
+  name String
+  numeric_month Int
+
+  payments Payment[]
+
+  @@map("months")
+}
+
+
 model Job {
   id          String @id @unique @default(uuid())
   name        String @unique
