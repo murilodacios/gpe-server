@@ -22,43 +22,11 @@ model Payment {
   valor Decimal @db.Decimal(19, 2)
   pago DateTime
 
-  //Mes atual
-  month Month @relation(fields: [month_id], references: [id])
-  month_id String
-
-  //Secretaria
-  secretary Secretary @relation(fields: [secretary_id], references: [id])
-  secretary_id String
+  month String
+  secretary String
+  year String
 
   @@map("payments")
-}
-
-model Secretary {
-  id String @id @unique @default(uuid())
-  name String
-  payments Payment[]
-
-  @@map("secretaries")
-}
-
-model Month {
-  id String @id @unique @default(uuid())
-  name String
-  numeric_month Int
-
-  payments Payment[]
-
-  @@map("months")
-}
-
-
-model Job {
-  id          String @id @unique @default(uuid())
-  name        String @unique
-  description String
-  user        User[]
-
-  @@map("jobs")
 }
 
 model Task {
@@ -83,9 +51,6 @@ model User {
   level       Int
   permissions String
 
-  job    Job    @relation(fields: [job_id], references: [id])
-  job_id String
-
   demands      UserOnDemand[]
   seen_demands DemandSeenByUser[]
 
@@ -103,9 +68,9 @@ model Demand {
   remetente        String
   assunto          String
   setores          String
-  data_emissao     DateTime
-  data_recebimento DateTime
-  prazo_resposta   DateTime
+  data_emissao     DateTime?
+  data_recebimento DateTime?
+  prazo_resposta   DateTime?
   status           String?
   data_resposta    DateTime?
   obs_resposta     String?

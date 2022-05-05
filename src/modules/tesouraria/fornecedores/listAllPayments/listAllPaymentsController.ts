@@ -5,11 +5,11 @@ class ListAllPaymentsController {
 
     async handle(req: Request, res: Response): Promise<Response> {
 
-        const { month_id, secretary_id } = req.query
+        const { month, secretary, year, takes } = req.query
 
         const listAllPaymentsUseCase = new ListAllPaymentsUseCase()
 
-        const payments = await listAllPaymentsUseCase.execute({ secretary_id, month_id })
+        const payments = await listAllPaymentsUseCase.execute({ secretary, month, year, takes })
 
         return res.json(payments)
 

@@ -4,7 +4,7 @@ import { AppError } from "../../../shared/errors/AppError";
 
 class ListUsersUseCase {
 
-    async execute(): Promise<Omit<User, "password" | 'job_id'>[]> {
+    async execute(): Promise<Omit<User, "password">[]> {
 
         try {
             const users = await prisma.user.findMany({
@@ -12,8 +12,6 @@ class ListUsersUseCase {
                     id: true,
                     email: true,
                     name: true,
-                    job_id: false,
-                    job: true,
                     level: true,
                     permissions: true,
                     password: false

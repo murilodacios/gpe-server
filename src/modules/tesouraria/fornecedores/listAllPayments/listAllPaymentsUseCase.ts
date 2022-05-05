@@ -4,22 +4,20 @@ import { AppError } from "../../../../shared/errors/AppError";
 
 class ListAllPaymentsUseCase {
 
-    async execute({ secretary_id, month_id }: Pick<Payment, 'month_id' | 'secretary_id'>): Promise<Payment[]> {
+    async execute({ secretary, month, year, takes }: Pick<Payment, 'month' | 'secretary' | 'year'>): Promise<Payment[]> {
 
         try {
 
             const payments = await prisma.payment.findMany({
                 where: {
-                    month_id,
-                    secretary_id,
-                },
-                include: {
-                    month: true,
-                    secretary: true
+                    month,
+                    secretary,
+                    year
                 },
                 orderBy: {
                     pago: "desc"
-                }
+                },
+                take: parseInt(takes)
             })
 
             return payments

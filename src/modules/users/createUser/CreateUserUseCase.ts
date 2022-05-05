@@ -11,8 +11,7 @@ class CreateUserUseCase {
         password,
         level,
         permissions,
-        job_id,
-    }: Omit<User, 'id'>): Promise<Omit<User, 'password' | 'job_id'>> {
+    }: Omit<User, 'id'>): Promise<Omit<User, 'password'>> {
 
 
         const userExists = await prisma.user.findFirst({
@@ -35,14 +34,11 @@ class CreateUserUseCase {
                     password: passwordHashed,
                     level,
                     permissions,
-                    job_id
                 },
                 select: {
                     id: true,
                     email: true,
                     name: true,
-                    job_id: false,
-                    job: true,
                     level: true,
                     permissions: true,
                     password: false

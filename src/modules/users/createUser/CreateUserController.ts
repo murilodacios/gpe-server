@@ -11,12 +11,11 @@ class CreateUserController {
             password,
             level,
             permissions,
-            job_id,
         } = req.body
 
         const createUserUseCase = new CreateUserUseCase()
 
-        const user = await createUserUseCase.execute({name, email, password, level, permissions, job_id})
+        const user = await createUserUseCase.execute({name, email, password, level, permissions})
 
         return res.json(user)
     }
