@@ -3,26 +3,16 @@ import { prisma } from './../src/db/prismaClient'
 
 async function main() {
 
-    const job = await prisma.job.create({
+    await prisma.user.create({
         data: {
-            name: "Administrador",
-            description: "Master"
-        }
-    })
-
-    if (job) {
-        await prisma.user.create({
-            data: {
-                name: "Murilo Dácio",
-                email: "murilodacio@gmail.com",
-                //@ts-ignore
-                password: await hash("", 8),
-                level: 1,
-                permissions: "god",
-                job_id: job.id
-            },
-        });
-    }
+            name: "Murilo Dácio",
+            email: "murilodacio@gmail.com",
+            //@ts-ignore
+            password: await hash("", 8),
+            level: 1,
+            permissions: "god",
+        },
+    });
 
 }
 
