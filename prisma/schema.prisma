@@ -55,9 +55,9 @@ model User {
   seen_demands DemandSeenByUser[]
 
   Demand Demand[]
-
-  @@map("users")
   Task Task[]
+  
+  @@map("users")
 }
 
 model Demand {

@@ -2,16 +2,15 @@ import { Payment } from "@prisma/client";
 import { prisma } from "../../../../db/prismaClient";
 import { AppError } from "../../../../shared/errors/AppError";
 
-interface IListAllPayments {
+interface IReportAllPayments {
     month: string;
     secretary: string;
     year: string;
-    takes: string;
 }
 
-class ListAllPaymentsUseCase {
+class ReportAllPaymentsUseCase {
 
-    async execute({ secretary, month, year, takes }: IListAllPayments): Promise<Payment[]> {
+    async execute({ secretary, month, year }: IReportAllPayments): Promise<Payment[]> {
 
         try {
 
@@ -24,7 +23,6 @@ class ListAllPaymentsUseCase {
                 orderBy: {
                     pago: "desc"
                 },
-                take: parseInt(takes) ? parseInt(takes) : 10
             })
 
             return payments
@@ -38,4 +36,4 @@ class ListAllPaymentsUseCase {
 
 }
 
-export { ListAllPaymentsUseCase }
+export { ReportAllPaymentsUseCase }

@@ -19,7 +19,6 @@ export const addUserToDemandEmail = async (emailUser: string, demand: Demand) =>
             
             
                         <p>Você foi adicionado(a) a demanda <strong>${demand.tipo} - ${demand.numero} - ${demand.assunto}</strong>. O prazo para resposta é até ${format(demand.prazo_resposta, 'dd/MM/yyyy')}</p> 
-                        <a href="https://gpe.strongr.com.br/demandas/${demand.id}>Clique aqui para abrir a demanda</a>
                 </div>
             </div> 
                    

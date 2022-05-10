@@ -12,7 +12,7 @@ export const verifyUserAdmin = async (userId: string) => {
         throw new AppError("Usuário não existe!")
     }
 
-    if (user.level !== 1) {
-        throw new AppError("Usuário não tem permissão para criar demandas")
+    if (user.level !== 1 || 2) {
+        throw new AppError("Usuário não tem permissão para realizar esta ação")
     }
 }

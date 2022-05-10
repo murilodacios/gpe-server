@@ -10,7 +10,7 @@ async function main() {
             //@ts-ignore
             password: await hash("", 8),
             level: 1,
-            permissions: "god",
+            permissions: "[all]",
         },
     });
 

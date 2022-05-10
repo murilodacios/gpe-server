@@ -7,6 +7,7 @@ class CreatePaymentUseCase {
     async execute({ empresa, processo, assunto, fonte, referencia, valor, pago, month, secretary }: Omit<Payment, 'id' | 'year'>): Promise<Omit<Payment, 'id'>> {
 
         try {
+            
             const payment = await prisma.payment.create({
                 data: {
                     empresa,

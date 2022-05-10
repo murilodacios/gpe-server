@@ -7,6 +7,7 @@ class ImportDemandsUseCase {
 
     async execute(file: Express.Multer.File | undefined): Promise<void> {
 
+        //@ts-ignore
         const { buffer } = file
 
         const readableFile = new Readable()
